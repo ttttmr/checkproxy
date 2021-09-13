@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Check Proxy</title>
+    <script src="calc.js"></script>
+    <script src="dev.js"></script>
+</head>
+
+<body>
+    <h1>Check Proxy</h1>
+    <div id="result">Status: stopped</div>
+    <br>
+    <form>
+        <label>Send Buffer Size</label>
+        <input id="buffer" type="number" value="5242880">
+        <!-- <label>Check Buffer Size</label> -->
+        <input id="check" type="hidden" value="1038336">
+        <input type="button" value="retry" onclick="run()">
+    </form>
+    <a href="https://github.com/ttttmr/checkproxy">https://github.com/ttttmr/checkproxy</a>
+</body>
