@@ -83,7 +83,7 @@ class TCPWindowZero(Sink):
             except:
                 # 可能decode失败，可能是tls握手
                 # 目前发现 burp 在第一次连接的会尝试tls
-                self.ERR(pkt, remote_key)
+                self.RST(pkt, remote_key)
                 return
             m = key.search(payload)
             if m:

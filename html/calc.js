@@ -1,7 +1,7 @@
-function start(bufferSize=5242880, checkSize=1038336) {
+function start(bufferSize = 1048576, checkSize = 524288) {
     document.getElementById("result").innerText = "Status: running"
 
-    var ws = new WebSocket("ws://"+location.hostname+":12345");
+    var ws = new WebSocket("ws://" + location.hostname + ":12345");
 
     ws.onopen = function (evt) {
         console.log("Connection open");
@@ -34,7 +34,9 @@ function calc(ws, bufferSize, checkSize) {
 }
 
 if (document.readyState == 'loading') {
-    document.addEventListener('DOMContentLoaded', function () {start()});
+    document.addEventListener('DOMContentLoaded', function () {
+        start()
+    });
 } else {
     start();
 }
