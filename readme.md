@@ -16,3 +16,4 @@ Windows|Chrome|Fiddler|Yes
 Windows|Firefox|Clash|Yes
 Windows|Firefox|Burp|Yes
 Windows|Firefox|Fiddler|Yes
+iOS|Safer|Shadowrocket|Yes
