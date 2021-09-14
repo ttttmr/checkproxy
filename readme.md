@@ -13,3 +13,6 @@ OS|Browser|Proxy|Result
 Windows|Chrome|Clash|Yes
 Windows|Chrome|Burp|Yes
 Windows|Chrome|Fiddler|Yes
+Windows|Firefox|Clash|Yes
+Windows|Firefox|Burp|Yes
+Windows|Firefox|Fiddler|Yes
