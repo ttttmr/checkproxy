@@ -45,6 +45,9 @@ class TCPWindowZero(Sink):
             self.ACK(pkt, remote_key)
         elif pkt[TCP].flags == "PA" and self.tcp_conn.get(remote_key, None):
             self.PSH_ACK(pkt, remote_key)
+        else:
+            # 其他的数据包rst掉
+            self.RST(pkt, remote_key)
 
     # SYN 尝试TCP握手
     def SYN(self, pkt, remote_key):
@@ -69,6 +72,9 @@ class TCPWindowZero(Sink):
                 self.win0_conn[remote_key] = self.win0_conn.get(
                     remote_key, 0)+1
                 send(ip / win0)
+        # 拒绝keep-alive
+        if pkt.seq + 1 == before_pkt.ack:
+            self.RST(pkt, remote_key)
 
     # PSH_ACK 收数据
     def PSH_ACK(self, pkt, remote_key):
@@ -98,8 +104,12 @@ class TCPWindowZero(Sink):
                 self.tcp_conn[remote_key] = ack
                 send(ip / ack / html)
             else:
-                # 没有匹配到，可能不是websocket握手
-                # self.ERR(pkt, remote_key)
+                # 没有匹配到，可能不是websocket握手，返回500，再rst
+                html = "HTTP/1.1 500 Internal Server Error\x0d\x0aContent-Length: 0\x0d\x0a\x0d\x0a"
+                ack = TCP(sport=self.lis_port, dport=pkt[TCP].sport,
+                          flags="A", seq=pkt[TCP].seq, ack=pkt[TCP].ack + len(pkt[TCP].load))
+                self.tcp_conn[remote_key] = ack
+                send(ip / ack / html)
                 return
         # 上一个包是ack，应该是建立了websocket连接，发送windowzero
         elif before_pkt.flags == "A":
@@ -108,7 +118,7 @@ class TCPWindowZero(Sink):
             self.tcp_conn[remote_key] = win0
             send(ip / win0)
         else:
-            # self.ERR(pkt, remote_key)
+            self.RST(pkt, remote_key)
             return
 
     # 错误
