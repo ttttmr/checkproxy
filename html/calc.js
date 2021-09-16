@@ -23,9 +23,9 @@ function calc(ws, bufferSize, checkSize) {
         console.log("all", bufferSize, "bufferedAmount", ws.bufferedAmount, "sended", bufferSize - ws.bufferedAmount)
         if (n === 5) {
             if ((bufferSize - ws.bufferedAmount) > checkSize) {
-                document.getElementById("result").innerText = "Status: found proxy"
+                document.getElementById("result").innerText = "Status: found proxy";
             } else {
-                document.getElementById("result").innerText = "Status: no proxy"
+                document.getElementById("result").innerText = "Status: no proxy";
             }
             clearInterval(interval);
         }
@@ -35,7 +35,7 @@ function calc(ws, bufferSize, checkSize) {
 
 if (document.readyState == 'loading') {
     document.addEventListener('DOMContentLoaded', function () {
-        start()
+        start();
     });
 } else {
     start();

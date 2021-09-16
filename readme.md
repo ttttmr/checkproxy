@@ -16,10 +16,13 @@ Windows|Chrome|Fiddler|Yes
 Windows|Firefox|Clash|Yes
 Windows|Firefox|Burp|Yes
 Windows|Firefox|Fiddler|Yes
-iOS|Safari|Shadowrocket|Yes
 macOS|Chrome|Clash|Yes
 macOS|Chrome|Burp|Yes
 macOS|Chrome|Charles|Yes
 macOS|Firefox|Clash|Yes
 macOS|Firefox|Burp|Yes
 macOS|Firefox|Charles|No
+macOS|Safari|Clash|Yes
+macOS|Safari|Burp|Yes
+macOS|Safari|Charles|No
+iOS|Safari|Shadowrocket|Yes
