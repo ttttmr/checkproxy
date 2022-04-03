@@ -1,6 +1,6 @@
 # 检测浏览器是否存在代理
 
-demo: http://43.129.186.78
+demo: 服务器到期了，关了
 
 ref: https://m.weibo.cn/status/JyJeNhqpP
 
